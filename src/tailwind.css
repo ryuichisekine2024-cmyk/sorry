@@ -316,3 +316,7 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Envelope scene: fade the title and hint while the letter rises out. */
+[data-scene="envelope"] > :not(.envelope) { transition: opacity 0.4s ease; }
+[data-scene="envelope"].is-opening > :not(.envelope) { opacity: 0; animation: none; }
