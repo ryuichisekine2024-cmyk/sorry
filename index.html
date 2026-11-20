@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffe4e6">
+  <title>A Letter For You</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f43f5e'%3E%3Cpath d='M12 21s-9-4.78-9-12a4.5 4.5 0 0 1 9-1.27A4.5 4.5 0 0 1 21 9c0 7.22-9 12-9 12Z'/%3E%3C/svg%3E">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Compiled Tailwind (source: src/tailwind.css, build: npm run build) -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body class="min-h-dvh overflow-hidden font-sans text-rose-950 antialiased selection:bg-rose-200">
+
+  <!-- Heroicons sprite (https://heroicons.com, MIT) -->
+  <svg xmlns="http://www.w3.org/2000/svg" class="hidden">
+    <symbol id="i-heart-solid" viewBox="0 0 24 24" fill="currentColor">
+      <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z"/>
+    </symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
+    </symbol>
+    <symbol id="i-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
+    </symbol>
+    <symbol id="i-forward" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061A1.125 1.125 0 0 1 3 16.811V8.69ZM12.75 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061a1.125 1.125 0 0 1-1.683-.977V8.69Z"/>
+    </symbol>
+    <symbol id="i-x-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 18 18 6M6 6l12 12"/>
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m4.5 12.75 6 6 9-13.5"/>
+    </symbol>
+    <symbol id="i-arrow-path" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"/>
+    </symbol>
+    <symbol id="i-envelope-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21.75 9v.906a2.25 2.25 0 0 1-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 0 0 1.183 1.981l6.478 3.488m8.839 2.51-4.66-2.51m0 0-1.023-.55a2.25 2.25 0 0 0-2.134 0l-1.022.55m0 0-4.661 2.51m16.5 1.615a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V8.844a2.25 2.25 0 0 1 1.183-1.981l7.5-4.039a2.25 2.25 0 0 1 2.134 0l7.5 4.039a2.25 2.25 0 0 1 1.183 1.98V19.5Z"/>
+    </symbol>
+  </svg>
+
+  <!-- Decorative layers -->
+  <div class="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden="true">
+    <div class="absolute rounded-full blur-[64px] animate-blob -left-24 -top-24 size-[26rem] bg-rose-300/60"></div>
+    <div class="absolute rounded-full blur-[64px] animate-blob -right-32 top-1/3 size-[30rem] bg-fuchsia-300/45 [animation-delay:-6s]"></div>
+    <div class="absolute rounded-full blur-[64px] animate-blob -bottom-32 left-1/4 size-[24rem] bg-pink-300/55 [animation-delay:-12s]"></div>
+  </div>
+  <div id="heart-rain" class="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true"></div>
+  <div id="fx-layer" class="pointer-events-none fixed inset-0 z-50 overflow-hidden" aria-hidden="true"></div>
+
+  <!-- Progress -->
+  <nav class="fixed inset-x-0 top-0 z-40 flex justify-center pt-5" aria-hidden="true">
+    <ol class="flex items-center gap-2 rounded-full bg-white/70 px-3 py-2 shadow-sm ring-1 ring-white/80 backdrop-blur-md" data-progress></ol>
+  </nav>
+
+  <main>
+    <!-- 1. Envelope -->
+    <section class="scene" data-scene="envelope" aria-labelledby="envelope-title">
+      <p class="mb-2 text-xs font-bold uppercase tracking-[0.35em] text-rose-400">You've got mail</p>
+      <h1 id="envelope-title" tabindex="-1" class="mb-12 text-center font-script text-5xl text-rose-600 focus:outline-none sm:text-6xl" data-bind="envelopeTitle"></h1>
+
+      <button type="button" class="envelope" data-ref="envelope" aria-label="Open the letter" aria-expanded="false">
+        <span class="envelope__back"></span>
+        <span class="envelope__letter font-script">I'm sorry...</span>
+        <span class="envelope__pocket"></span>
+        <span class="envelope__flap"></span>
+        <span class="envelope__seal"><svg class="size-7" aria-hidden="true"><use href="#i-heart-solid"/></svg></span>
+      </button>
+
+      <p class="animate-pulse-soft mt-12 inline-flex items-center gap-2 font-semibold text-rose-500/80">
+        <svg class="size-5" aria-hidden="true"><use href="#i-envelope-open"/></svg>
+        Tap the envelope to open
+      </p>
+    </section>
+
+    <!-- 2. Apology letter -->
+    <section class="scene" data-scene="letter" aria-labelledby="letter-title">
+      <article class="relative mt-10 w-full max-w-xl cursor-default rounded-3xl bg-paper px-6 pb-8 pt-12 shadow-card ring-1 ring-rose-100 sm:px-10" data-ref="paper">
+        <figure class="polaroid absolute -right-2 -top-12 w-32 rotate-6 sm:-right-6 sm:w-40">
+          <span class="tape"></span>
+          <img class="aspect-square w-full object-cover" data-bind-src="images.letter" alt="Kitten peeking around a door: I'm sorry, please forgive me?">
+        </figure>
+
+        <h2 id="letter-title" tabindex="-1" class="pr-28 font-script text-4xl text-rose-600 focus:outline-none sm:pr-36 sm:text-5xl" data-bind="greeting"></h2>
+        <p class="sr-only" data-bind="letter"></p>
+        <p class="ruled mt-4 min-h-[13.5rem] whitespace-pre-wrap font-script text-[1.4rem] text-rose-950/85 sm:text-2xl" data-ref="body" aria-hidden="true"></p>
+        <p class="mt-4 text-right font-script text-2xl text-rose-600 opacity-0 transition-opacity duration-1000" data-ref="signature" data-bind="signature"></p>
+      </article>
+
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <button type="button" class="btn btn-ghost" data-ref="skip">
+          <svg class="size-5" aria-hidden="true"><use href="#i-forward"/></svg>
+          Skip
+        </button>
+        <button type="button" class="btn btn-primary animate-rise" data-ref="next" data-action="next" hidden>
+          There's more
+          <svg class="size-5" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- 3. Reasons deck -->
+    <section class="scene" data-scene="reasons" aria-labelledby="reasons-title">
+      <h2 id="reasons-title" tabindex="-1" class="text-center font-script text-4xl text-rose-600 focus:outline-none sm:text-5xl">Little things I need you to know</h2>
+      <p class="mb-10 mt-2 text-center font-medium text-rose-900/60">Swipe or tap each card</p>
+
+      <div class="relative aspect-[4/5] w-[min(18rem,80vw)] sm:w-80" data-ref="deck"></div>
+
+      <p class="mt-10 font-semibold tabular-nums text-rose-900/60" data-ref="counter" aria-live="polite"></p>
+
+      <div class="mt-5 flex flex-wrap justify-center gap-3">
+        <button type="button" class="btn btn-ghost" data-ref="nextCard">
+          Next card
+          <svg class="size-5" aria-hidden="true"><use href="#i-chevron-right"/></svg>
+        </button>
+        <button type="button" class="btn btn-primary animate-rise" data-ref="next" data-action="next" hidden>
+          One last question
+          <svg class="size-5" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- 4. The question -->
+    <section class="scene" data-scene="question" aria-labelledby="question-title">
+      <figure class="polaroid relative w-52 -rotate-3 sm:w-60" data-ref="photo">
+        <span class="tape"></span>
+        <img class="max-h-[38vh] w-full object-cover" data-bind-src="images.question" alt="Kitten: Will you forgive me?">
+      </figure>
+
+      <h2 id="question-title" tabindex="-1" class="mt-8 text-center font-script text-5xl text-rose-600 focus:outline-none sm:text-6xl">Will you forgive me?</h2>
+      <p class="mt-3 h-6 text-center font-semibold text-rose-900/60" data-ref="plea" aria-live="polite"></p>
+
+      <div class="mt-8 flex min-h-24 items-center justify-center gap-5">
+        <button type="button" class="btn btn-primary px-8 text-lg" data-ref="yes">
+          <svg class="size-5" aria-hidden="true"><use href="#i-heart-solid"/></svg>
+          Yes
+        </button>
+        <button type="button" class="btn btn-ghost" data-ref="no">
+          <svg class="size-5" aria-hidden="true"><use href="#i-x-mark"/></svg>
+          <span data-ref="noLabel">No</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 5. Celebration -->
+    <section class="scene" data-scene="celebration" aria-labelledby="celebration-title">
+      <h2 id="celebration-title" tabindex="-1" class="text-center font-script text-6xl text-rose-600 focus:outline-none sm:text-7xl">Yaaay!</h2>
+
+      <figure class="polaroid relative mt-6 w-56 rotate-3 sm:w-64" data-ref="photo">
+        <img class="aspect-square w-full object-cover" data-bind-src="images.celebration" alt="Smiling kitten surrounded by hearts">
+        <figcaption class="pt-3 text-center font-script text-2xl text-rose-950/80">I love you!</figcaption>
+      </figure>
+
+      <article class="mt-8 w-full max-w-lg rounded-3xl bg-white/75 p-6 shadow-card ring-1 ring-white/70 backdrop-blur-md sm:p-8">
+        <p class="text-center font-script text-2xl leading-snug text-rose-950/85 sm:text-[1.7rem]" data-bind="finalMessage"></p>
+        <ul class="mt-5 space-y-3" data-ref="promises"></ul>
+        <p class="mt-5 text-right font-script text-2xl text-rose-600" data-bind="signature"></p>
+      </article>
+
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <button type="button" class="btn btn-ghost" data-ref="restart">
+          <svg class="size-5" aria-hidden="true"><use href="#i-arrow-path"/></svg>
+          Read it again
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Templates -->
+  <template id="tpl-photo-card">
+    <article class="deck-card polaroid flex flex-col" role="button" aria-label="Next card">
+      <img data-slot="image" class="pointer-events-none min-h-0 w-full flex-1 object-cover" draggable="false" alt="">
+      <p data-slot="caption" class="pt-3 text-center font-script text-2xl text-rose-950/80"></p>
+    </article>
+  </template>
+
+  <template id="tpl-note-card">
+    <article class="deck-card flex flex-col items-center justify-center rounded-3xl bg-paper p-8 text-center shadow-card ring-1 ring-rose-100" role="button" aria-label="Next card">
+      <p data-slot="text" class="font-script text-3xl leading-snug text-rose-950/85"></p>
+    </article>
+  </template>
+
+  <template id="tpl-promise">
+    <li class="flex items-start gap-3">
+      <span class="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-rose-100 text-rose-500">
+        <svg class="size-3.5" aria-hidden="true"><use href="#i-check"/></svg>
+      </span>
+      <span data-slot="text" class="font-semibold text-rose-950/80"></span>
+    </li>
+  </template>
+
+  <!-- Classic deferred scripts so the page also works when opened from file:// -->
+  <script src="assets/js/config.js" defer></script>
+  <script src="assets/js/lib/utils.js" defer></script>
+  <script src="assets/js/lib/effects.js" defer></script>
+  <script src="assets/js/scenes/envelope.js" defer></script>
+  <script src="assets/js/scenes/letter.js" defer></script>
+  <script src="assets/js/scenes/reasons.js" defer></script>
+  <script src="assets/js/scenes/question.js" defer></script>
+  <script src="assets/js/scenes/celebration.js" defer></script>
+  <script src="assets/js/app.js" defer></script>
+</body>
+</html>
