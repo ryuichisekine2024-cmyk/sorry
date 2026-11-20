@@ -1,0 +1,318 @@
+/*
+ * Tailwind source. Compiled to assets/css/styles.css with `npm run build`.
+ * Only classes actually used in index.html and assets/js end up in the output.
+ */
+@import "tailwindcss" source(none);
+@source "../index.html";
+@source "../assets/js";
+
+/* ---------- Design tokens ---------- */
+@theme {
+  --font-sans: "Quicksand", ui-sans-serif, system-ui, sans-serif;
+  --font-script: "Dancing Script", cursive;
+
+  --color-paper: #fffaf3;
+
+  --shadow-soft: 0 24px 48px -16px rgb(190 24 93 / 0.28);
+  --shadow-card: 0 2px 6px rgb(190 24 93 / 0.08), 0 18px 36px -12px rgb(190 24 93 / 0.35), 0 40px 80px -24px rgb(136 19 55 / 0.35);
+  --shadow-glow: 0 12px 28px -8px rgb(244 63 94 / 0.6);
+
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --animate-rise: rise 0.6s var(--ease-spring) both;
+  --animate-pop: pop 0.8s var(--ease-spring) both;
+  --animate-shake: shake 0.45s ease;
+  --animate-pulse-soft: pulse-soft 2s ease-in-out infinite;
+  --animate-blob: blob-float 18s ease-in-out infinite alternate;
+
+  @keyframes rise { from { opacity: 0; transform: translateY(12px); } }
+  @keyframes pop { from { opacity: 0; transform: scale(0.3) rotate(-15deg); } }
+  @keyframes pulse-soft { 50% { opacity: 0.5; } }
+  @keyframes shake {
+    20% { transform: translateX(-8px) rotate(-2deg); }
+    40% { transform: translateX(8px) rotate(2deg); }
+    60% { transform: translateX(-5px); }
+    80% { transform: translateX(5px); }
+  }
+  @keyframes blob-float {
+    50% { transform: translate(40px, -30px) scale(1.08); }
+    100% { transform: translate(-30px, 30px) scale(0.95); }
+  }
+}
+
+@layer base {
+  body {
+    background: linear-gradient(160deg, #fff1f2 0%, #ffe4e6 45%, #fae8ff 100%) fixed;
+  }
+}
+
+/* ---------- Buttons ---------- */
+@layer components {
+  .btn {
+    @apply relative isolate inline-flex cursor-pointer select-none items-center justify-center gap-2
+           overflow-hidden whitespace-nowrap rounded-full px-6 py-3 text-base font-bold
+           transition duration-300 ease-out hover:-translate-y-0.5 active:translate-y-0 active:scale-95
+           focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-rose-300/70;
+  }
+  .btn-primary {
+    @apply bg-linear-to-br from-rose-400 via-pink-500 to-rose-500 text-white shadow-glow
+           hover:shadow-[0_18px_36px_-8px_rgb(244_63_94/0.7)];
+  }
+  .btn-ghost {
+    @apply bg-white/80 text-rose-600 shadow-soft ring-1 ring-rose-100 backdrop-blur hover:bg-white;
+  }
+
+  /* Light sweep on hover */
+  .btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / 0.45) 50%, transparent 70%);
+    transform: translateX(-120%);
+    transition: transform 0.7s ease;
+  }
+  .btn:hover::after { transform: translateX(120%); }
+  .btn svg { transition: transform 0.3s var(--ease-spring); }
+  .btn:hover svg { transform: scale(1.15); }
+}
+
+/*
+ * Pieces below are stateful or shape-heavy (clip-paths, CSS-variable driven
+ * motion, JS-toggled states), so they stay as small named classes.
+ * They are intentionally unlayered so their state classes override utilities.
+ */
+
+/* ---------- Scenes ---------- */
+.scene {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: safe center;
+  overflow-y: auto;
+  padding: 4.5rem 1rem 2.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.97);
+  filter: blur(8px);
+  transition: opacity 0.7s ease, transform 0.7s ease, filter 0.7s ease, visibility 0s linear 0.7s;
+}
+.scene.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  filter: none;
+  transition-delay: 0s;
+}
+
+/* ---------- Progress dots ---------- */
+.progress-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: var(--color-rose-200);
+  transition: width 0.5s var(--ease-spring), background-color 0.5s ease;
+}
+.progress-dot.is-done { background: var(--color-rose-400); }
+.progress-dot.is-current { width: 2rem; background: var(--color-rose-500); }
+
+/* ---------- Envelope ---------- */
+.envelope {
+  position: relative;
+  width: min(20rem, 80vw);
+  aspect-ratio: 3 / 2;
+  perspective: 900px;
+  cursor: pointer;
+  filter: drop-shadow(0 24px 28px rgb(190 24 93 / 0.3));
+  animation: bob 3.2s ease-in-out infinite;
+  transition: scale 0.4s var(--ease-spring);
+}
+.envelope:hover { scale: 1.04; }
+.envelope:focus-visible { outline: 4px solid rgb(253 164 175 / 0.7); outline-offset: 8px; border-radius: 1rem; }
+.envelope > span { position: absolute; border-radius: 0.75rem; }
+
+.envelope__back { inset: 0; z-index: 0; background: var(--color-rose-400); }
+
+.envelope__letter {
+  inset: 8% 7% 6%;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  padding-top: 12%;
+  border-radius: 0.5rem !important;
+  background: var(--color-paper);
+  color: var(--color-rose-600);
+  font-size: 1.6rem;
+  transition: transform 0.9s var(--ease-spring) 0.55s;
+}
+
+.envelope__pocket {
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(160deg, var(--color-rose-300), var(--color-rose-400));
+  clip-path: polygon(0 0, 50% 52%, 100% 0, 100% 100%, 0 100%);
+}
+
+.envelope__flap {
+  inset: 0 0 auto 0;
+  height: 62%;
+  z-index: 3;
+  background: linear-gradient(180deg, var(--color-rose-500), var(--color-rose-400));
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top;
+  transition: transform 0.6s ease, z-index 0s linear 0.3s;
+}
+
+.envelope__seal {
+  left: 50%;
+  top: 60%;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  translate: -50% -50%;
+  border-radius: 9999px !important;
+  background: var(--color-rose-50);
+  color: var(--color-rose-500);
+  box-shadow: 0 6px 14px rgb(190 24 93 / 0.3);
+  animation: heartbeat 1.6s ease-in-out infinite;
+  transition: opacity 0.35s ease, scale 0.35s ease;
+}
+
+.envelope.is-open { animation-play-state: paused; }
+.envelope.is-open .envelope__flap { transform: rotateX(180deg); z-index: 0; }
+.envelope.is-open .envelope__seal { opacity: 0; scale: 1.6; animation: none; }
+.envelope.is-open .envelope__letter { transform: translateY(-58%); }
+
+/* ---------- Paper & polaroids ---------- */
+.ruled {
+  --line: 2.25rem;
+  line-height: var(--line);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(var(--line) - 1px),
+    #f5d0da calc(var(--line) - 1px),
+    #f5d0da var(--line)
+  );
+}
+
+.caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  margin-left: 1px;
+  vertical-align: -0.2em;
+  background: var(--color-rose-500);
+  animation: blink 0.8s step-end infinite;
+}
+
+/* Position (relative/absolute) is set with utilities in the markup. */
+.polaroid {
+  padding: 0.6rem 0.6rem 1rem;
+  border-radius: 0.25rem;
+  background: #fff;
+  box-shadow: 0 16px 32px -12px rgb(0 0 0 / 0.3);
+  transition: rotate 0.45s var(--ease-spring), scale 0.45s var(--ease-spring), box-shadow 0.45s ease;
+}
+.polaroid:hover {
+  rotate: 0deg;
+  scale: 1.04;
+  box-shadow: 0 24px 40px -14px rgb(190 24 93 / 0.4);
+}
+.polaroid img { display: block; border-radius: 2px; }
+
+.tape {
+  position: absolute;
+  top: -0.75rem;
+  left: 50%;
+  z-index: 1;
+  width: 4.5rem;
+  height: 1.5rem;
+  translate: -50% 0;
+  rotate: -4deg;
+  background: rgb(254 205 211 / 0.75);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+}
+
+/* ---------- Deck cards ---------- */
+.deck-card {
+  position: absolute;
+  inset: 0;
+  z-index: calc(100 - var(--depth, 0));
+  cursor: grab;
+  user-select: none;
+  touch-action: pan-y;
+  transform-origin: 50% 90%;
+  transform:
+    translateY(calc(var(--depth, 0) * 14px))
+    scale(calc(1 - var(--depth, 0) * 0.05))
+    rotate(var(--tilt, 0deg));
+  transition: transform 0.45s var(--ease-spring), opacity 0.45s ease;
+}
+.deck-card:not(.is-top) { pointer-events: none; }
+.deck-card:focus-visible { outline: 4px solid rgb(253 164 175 / 0.7); outline-offset: 4px; }
+.deck-card.is-dragging { cursor: grabbing; transition: none; }
+.deck-card.is-buried,
+.deck-card.is-gone { opacity: 0; }
+.deck-card.is-gone { pointer-events: none; }
+
+/* ---------- Runaway "No" button ---------- */
+.is-runaway {
+  position: fixed;
+  z-index: 60;
+  transition:
+    left 0.35s var(--ease-spring),
+    top 0.35s var(--ease-spring),
+    translate 0.3s ease,
+    scale 0.3s ease,
+    background-color 0.3s ease;
+}
+
+/* ---------- Heart particles ---------- */
+.falling-heart,
+.burst-heart,
+.trail-heart {
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+}
+.falling-heart {
+  bottom: -3rem;
+  opacity: 0.7;
+  animation: heart-rise var(--duration) linear forwards;
+}
+.burst-heart,
+.trail-heart {
+  left: var(--x);
+  top: var(--y);
+  margin: calc(var(--size) / -2) 0 0 calc(var(--size) / -2);
+}
+.burst-heart { animation: heart-burst 1.4s cubic-bezier(0.15, 0.7, 0.3, 1) both; }
+.trail-heart { opacity: 0.8; animation: heart-trail 0.9s ease-out forwards; }
+
+/* ---------- Keyframes used by the named classes above ---------- */
+@keyframes bob { 50% { transform: translateY(-10px); } }
+@keyframes heartbeat { 0%, 100% { scale: 1; } 15% { scale: 1.15; } 30% { scale: 1; } 45% { scale: 1.1; } }
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes heart-rise {
+  50% { transform: translate(var(--drift), -55vh) rotate(18deg); }
+  100% { transform: translate(0, -115vh) rotate(-12deg); opacity: 0; }
+}
+@keyframes heart-burst {
+  from { transform: translate(0, 0) scale(0.3); opacity: 1; }
+  to { transform: translate(var(--dx), var(--dy)) scale(1) rotate(var(--rot)); opacity: 0; }
+}
+@keyframes heart-trail { to { transform: translateY(-28px) scale(0.4); opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
